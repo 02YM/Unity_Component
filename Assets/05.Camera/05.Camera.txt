@@ -1,0 +1,41 @@
+# Camra
+- 게임 씬을 화면에 그리는 역할을 하는 렌더링 뷰포트
+
+# 주의 사항
+- "MainCamera" 태그가 붙은 현재 활성화 되어 있는 카메라
+
+
+# 기본 프로퍼티
+- 1. ClearFlags : 카메라 영여의 빈 부분을 어떻게 처리할지.
+-- SkyBox : 스카이박스
+-- SolidBox : 단색 배경
+-- DepthOnly : Culling Mask 속성에서 지정된 Layer를 채워 넣고 이외의 영역을 투명으로 처리한다.
+-- Dont Clear : 그래픽을 이전 프레임에 그려진 걸 지우지 않고 위에 덧그린다.
+- 2. BackGround : 카메라 영역의 빈 부분을 채워질 색을 선정한다 (Sky Box는 사용할 수 없다.)
+- 3. Culling Mask : 지정된 "Layer" 만 그린다.
+- 4. Projection : 투사
+-- Perspective : 원근법 사용O (멀리있는 오브젝트는 작아짐)
+-- Orthographic : 원근법 사용X (밀리 있어도 크기가 변하지 않는다.)
+- 5. FOV Axis : 지정된 축을 기준ㅇ로 시야각을 지정한다 (원근법을 사용한다)
+-- Vertical : 수직 기준으로 시야각이 조정된다.
+-- Horizantal : 수평 기준으로 시야각이 조정된다
+- 6. Field of View
+-- FOV Axis에서 지정한 기준으로 시야각의 수치를 조절한다.
+- 7. Physic Camera : 실제 카메라 렌즈와 센서를 모방하여 Field of View를 계산한다.
+- 8. Clipping Planes : 카메라 오브젝트로 부터 Near 이상 Far 이하 Unit거리 안에 있는 것들만 랜더링 한다.
+- 9. Viewpoint Rect : 화면에 표시될 영역
+- 10. Depth : 랜더링 우선순위이다, 숫자가 낮을 수록 우선순위가 높다.
+-- 우선순위가 낮을 수록 먼저 렌더링 된 화면 위에 덧대서 랜더링 한다.
+- 11. Rendering Path : 카메라에 사용될 렌더링 방식을 지정한다
+- 12. Target Texture : 텍스쳐를 Camera가 비추고 있는 영역으로 만들 수 있다.
+- 13. Occlusion Culling : 기존에서 가장 멀리 있는 오브젝트를 먼저 렌더 하고 앞에 있는 오브젝트를 렌더하는데,
+						  앞에 있는 오브젝트에 의해 뒤에 있는 오브젝트가 가려질 떄, 렌더 하지 않음
+- 14. HDR : 일종의 픽셀 정보 처리 방법이다.
+- 15. MSAA : 안티 얼라이어싱을 위한 여러 기법중 하나
+- 16. Allow Dynaimc Resolution : 해상도를 낮춰 프레임을 향상시키는 기능을한다.
+- 17. Target Display : 다중 모니터를 사용할 경우 표시될 모니터를 지정한다.
+
+# 변수/프로퍼티
+
+
+# 함수/메서드
