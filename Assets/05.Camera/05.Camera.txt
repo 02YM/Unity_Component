@@ -36,6 +36,50 @@
 - 17. Target Display : 다중 모니터를 사용할 경우 표시될 모니터를 지정한다.
 
 # 변수/프로퍼티
-
+- 1. Camera.main : Main Camera 태그가 있는 카메라를 참조
+- 2. fieldOfView 카메라의 시야각(FOV, 3D 전용), 기본값 60
+- 3. orthographic : 카메라 직교 모드인지 여무 (true면 2D 스타일)
+- 4. orthographicSize : 직교 카메라일 때의 세로 절반 크기(2D 줌에 자주 씀)
+- 5. backGroundColor : 카메라의 배경 색
+- 6. ClearFlags : 카메라가 뭘 지울지 결정(예: Skybox, Solid Color, 등)
+- 7. depth : 카메라 렌더링 순서 (값이 높을수록 나중에 렌더링됨)
+- 8. cullingMask : 어떤 레이어를 렌더링할지 결정하는 스크
+- 9. viewportRect : 카메라가 화면에 차지하는 사각형 영역
+- 10. pixelRect : 실제 화면에서 카메라가 차지하는 픽셀 영역
+- 11. targetTexture : 렌더링 결과를 출력할 RenderTexture(예: 미니맵, CCTV등)
+- 12. WorldToScreenPoint() : 월드좌표 -> 스크린 좌표로 변환
+- 13. ScreenToWorldPoint() : 스크린좌표 -> 월드 좌표로 변환
+- 14. WorldToViewportPoint() : 월드좌표 -> 뷰포트 좌표로 변환
 
 # 함수/메서드
+- 1. ScreenToWorldPoint(Vector3)
+-- 스크린 좌표(마우스 위치 등)를 월드 좌표로 변환
+
+- 2. WorldToScreenPoint(Vector3)
+-- 월드 좌표를 스크린 좌표로 변환
+-- 예시) 월드 오브젝트 위에 UI 표시하기 (EX. 체력바, 이름표)
+
+- 3. ViewportToWorldPoint(Vector3)
+-- 화면 비율 기반으로 위치 잡고 싶은때
+-- 카메라 이동에 맞춰 자동 배치되는 오브젝트 만들떄
+-- 예시) 미니맵 아이콘, 보스 경고 화살표 등 화면 경꼐 계산
+
+- 4. WorldToViewportPoint(Vector3)
+-- 월드 좌표를 카메라 뷰포트 공간(0~1범위)으로 바꾸는 기능입니다.
+-- 얘시)주로 오브젝트가 화면 안에 있는지 확인 하거나 스크린 밖에 있을 경우 UI표시 방향 계산할떄 쓰임니다.
+
+- 5. ScreenToViewportPoint(Vector3)
+-- 스키린좌표 -> 뷰포트 좌표로 변환해줍니다.
+-- 예시)터치 입력용, UI 조작용, 3D 시점 컨트롤용
+
+- 6. ViewportToScreenPoint(Vector3)
+-- 뷰포트 좌표(0~1) -> 스크린 좌표로 변환해주는 함수입니다.
+-- 예시) 화면 중앙에 UI 이펙트/텍스트 표시, 상단/하단/모서리에 UI배치, 튜토리얼 핑거
+
+- 7. Render()
+
+- 8. ResetProjectionMatrix()
+
+- 9. CalculateFrustumCorners()
+
+- 10. ScreenPoinToRay(Vector3)

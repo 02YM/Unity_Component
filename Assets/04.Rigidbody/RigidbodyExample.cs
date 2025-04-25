@@ -6,7 +6,7 @@ public class RigidbodyExample : MonoBehaviour
     Rigidbody rigidbody;
     void Start()
     {
-        
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
