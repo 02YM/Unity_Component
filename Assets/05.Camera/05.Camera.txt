@@ -1,0 +1,99 @@
+# Camra
+- 게임 씬을 화면에 그리는 역할을 하는 렌더링 뷰포트
+
+# 주의 사항
+- "MainCamera" 태그가 붙은 현재 활성화 되어 있는 카메라
+
+
+# 기본 프로퍼티
+- 1. ClearFlags : 카메라 영여의 빈 부분을 어떻게 처리할지.
+-- SkyBox : 스카이박스
+-- SolidBox : 단색 배경
+-- DepthOnly : Culling Mask 속성에서 지정된 Layer를 채워 넣고 이외의 영역을 투명으로 처리한다.
+-- Dont Clear : 그래픽을 이전 프레임에 그려진 걸 지우지 않고 위에 덧그린다.
+- 2. BackGround : 카메라 영역의 빈 부분을 채워질 색을 선정한다 (Sky Box는 사용할 수 없다.)
+- 3. Culling Mask : 지정된 "Layer" 만 그린다.
+- 4. Projection : 투사
+-- Perspective : 원근법 사용O (멀리있는 오브젝트는 작아짐)
+-- Orthographic : 원근법 사용X (밀리 있어도 크기가 변하지 않는다.)
+- 5. FOV Axis : 지정된 축을 기준ㅇ로 시야각을 지정한다 (원근법을 사용한다)
+-- Vertical : 수직 기준으로 시야각이 조정된다.
+-- Horizantal : 수평 기준으로 시야각이 조정된다
+- 6. Field of View
+-- FOV Axis에서 지정한 기준으로 시야각의 수치를 조절한다.
+- 7. Physic Camera : 실제 카메라 렌즈와 센서를 모방하여 Field of View를 계산한다.
+- 8. Clipping Planes : 카메라 오브젝트로 부터 Near 이상 Far 이하 Unit거리 안에 있는 것들만 랜더링 한다.
+- 9. Viewpoint Rect : 화면에 표시될 영역
+- 10. Depth : 랜더링 우선순위이다, 숫자가 낮을 수록 우선순위가 높다.
+-- 우선순위가 낮을 수록 먼저 렌더링 된 화면 위에 덧대서 랜더링 한다.
+- 11. Rendering Path : 카메라에 사용될 렌더링 방식을 지정한다
+- 12. Target Texture : 텍스쳐를 Camera가 비추고 있는 영역으로 만들 수 있다.
+- 13. Occlusion Culling : 기존에서 가장 멀리 있는 오브젝트를 먼저 렌더 하고 앞에 있는 오브젝트를 렌더하는데,
+						  앞에 있는 오브젝트에 의해 뒤에 있는 오브젝트가 가려질 떄, 렌더 하지 않음
+- 14. HDR : 일종의 픽셀 정보 처리 방법이다.
+- 15. MSAA : 안티 얼라이어싱을 위한 여러 기법중 하나
+- 16. Allow Dynaimc Resolution : 해상도를 낮춰 프레임을 향상시키는 기능을한다.
+- 17. Target Display : 다중 모니터를 사용할 경우 표시될 모니터를 지정한다.
+
+# 변수/프로퍼티
+- 1. Camera.main : Main Camera 태그가 있는 카메라를 참조
+- 2. fieldOfView 카메라의 시야각(FOV, 3D 전용), 기본값 60
+- 3. orthographic : 카메라 직교 모드인지 여무 (true면 2D 스타일)
+- 4. orthographicSize : 직교 카메라일 때의 세로 절반 크기(2D 줌에 자주 씀)
+- 5. backGroundColor : 카메라의 배경 색
+- 6. ClearFlags : 카메라가 뭘 지울지 결정(예: Skybox, Solid Color, 등)
+- 7. depth : 카메라 렌더링 순서 (값이 높을수록 나중에 렌더링됨)
+- 8. cullingMask : 어떤 레이어를 렌더링할지 결정하는 스크
+- 9. viewportRect : 카메라가 화면에 차지하는 사각형 영역
+- 10. pixelRect : 실제 화면에서 카메라가 차지하는 픽셀 영역
+- 11. targetTexture : 렌더링 결과를 출력할 RenderTexture(예: 미니맵, CCTV등)
+- 12. WorldToScreenPoint() : 월드좌표 -> 스크린 좌표로 변환
+- 13. ScreenToWorldPoint() : 스크린좌표 -> 월드 좌표로 변환
+- 14. WorldToViewportPoint() : 월드좌표 -> 뷰포트 좌표로 변환
+
+# 함수/메서드
+- 1. ScreenToWorldPoint(Vector3)
+-- 스크린 좌표(마우스 위치 등)를 월드 좌표로 변환
+
+- 2. WorldToScreenPoint(Vector3)
+-- 월드 좌표를 스크린 좌표로 변환
+-- 예시) 월드 오브젝트 위에 UI 표시하기 (EX. 체력바, 이름표)
+
+- 3. ViewportToWorldPoint(Vector3)
+-- 화면 비율 기반으로 위치 잡고 싶은때
+-- 카메라 이동에 맞춰 자동 배치되는 오브젝트 만들떄
+-- 예시) 미니맵 아이콘, 보스 경고 화살표 등 화면 경꼐 계산
+
+- 4. WorldToViewportPoint(Vector3)
+-- 월드 좌표를 카메라 뷰포트 공간(0~1범위)으로 바꾸는 기능입니다.
+-- 얘시)주로 오브젝트가 화면 안에 있는지 확인 하거나 스크린 밖에 있을 경우 UI표시 방향 계산할떄 쓰임니다.
+
+- 5. ScreenToViewportPoint(Vector3)
+-- 스키린좌표 -> 뷰포트 좌표로 변환해줍니다.
+-- 예시)터치 입력용, UI 조작용, 3D 시점 컨트롤용
+
+- 6. ViewportToScreenPoint(Vector3)
+-- 뷰포트 좌표(0~1) -> 스크린 좌표로 변환해주는 함수입니다.
+-- 예시) 화면 중앙에 UI 이펙트/텍스트 표시, 상단/하단/모서리에 UI배치, 튜토리얼 핑거
+
+- 7. Render()
+-- 카메라가 현재 설정된 뷰를 강제로 한 번 렌더링하도록 지시하는 메서드입니다.
+-- 에시) 여러 카메라를 이용해 특정 렌더 타겟에 별도로 그려야 할 때
+-- 프레임 저장(스크린샷 찍기 등)을 하거나
+
+- 8. ResetProjectionMatrix()
+-- 직접 수정한 카메라 투영을 기본으로 복구하는 버튼이다.
+-- 카메라 왜곡, 충격효과, 폭발, 카메라 렌즈
+
+- 9. CalculateFrustumCorners()
+-- 카메라의 뷰 프러스텀(Frustum, 시야 각불체)의 네 꼭짓점 좌표를 계산해서 알려주는 메서드입니다.
+-- outCorner[0] : 왼쪽 아래
+-- outCorner[1] : 왼쪽 위
+-- outCorner[2] : 오른쪽 위
+-- outCorner[3] : 오른쪽 아래
+-- 예시) 셀프 새도우 계산, 화면 가장자리 이펙트, 프리스텀 디버깅
+
+- 10. ScreenPoinToRay(Vector3)
+-- 화면(x,y) 포인트를 기준으로 3D 월드에서 쏘는 레이를 만들어주는 함수이다.
+-- 예시) 화면클릭, 터치한 곳으로 레이을 쏠 때
+-- UI 위를 클릭했을 떄는 무시하는 처리 : EventSystem.IsPointerOverGameObject()

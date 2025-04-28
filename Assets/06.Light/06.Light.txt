@@ -1,0 +1,52 @@
+# Light
+- 씬 오브젝트를 밝히거나 그림자, 분위기를 만드는 역할하는 컴포넌트
+
+# 종류
+- Directional Light
+-- 평행한 빛을 전체 공간에 뿌리는 조명
+-- 예시) 태양광, 달빛
+
+- Point Light
+-- 한점에서 모든 방향으로 퍼지는 빛
+-- 예시) 전구, 불꽃
+
+- Spot Light
+-- 특정 방향으로 퍼지는 운뿔 모양 빛
+-- 예시) 손전등, 무대 스포트라이트
+
+- Area Light
+-- 직사각형 모양으로 퍼지는 빛
+-- 예시) 창문을 통한 빛, 형광등
+
+
+# 기본 프로퍼티
+- Type : 조명 타입
+- Color : 빛의 색상
+- Mode : 라이트 계산 방법
+-- Realtime : 실기간 계산
+-- Baked : 미리 계산
+-- Mixed : 정적 오브젝트는 베이크, 동적은 실시간 계산
+- Intensity : 빛의 밝기
+- Indirect Multiplier : 반사된 빛의 밝기 조정
+- Shadow Type : 그림자 생성 여부 및 스타일
+-- No Shadows
+-- Hard Shadws
+-- Soft Shadows
+- Realtime Shadows : (Mode가 Realtime 일때) 그림자 세부 옵션 설정
+-- Strength : 글자의 어두운 정도 (0~1), 1이면 검정
+-- Resolution : 그림자 해상도, 고행도일수록 부드럽지만 무거움
+-- Bias : 빛과 금리자 생성가리 오차 보정
+-- Normal Bias : 표면 법선을 따라 그림자를 뛰우는 정도
+-- Near Plane : 그림자 렌더링을 시작할 최소 거리(너무 가까우면 그림자 잘림 현상 조정)
+- Cooke : 조명에 텍스처를 입혀 패턴을 만든다(예) 창문 그림자, 나뭇잎 무늬)
+-- Size : Cookie 텍스처의 크기 조정
+- Draw Halo : 빛 주변에 부드러운 후관 효과 여부
+- Flar : 빛의 광원에 플레어(렌즈 반사 효과)를 추가할지 선택
+- Render Mode : 라이트 렌더링 우선순위 결정(Auto, Important(항상 렌더), Not Important(필요 시만 렌더))
+- Culling Mask : 어떤 레이어에 있는지 오브젝트만 이 빛의 영향을 받을지 설정
+
+
+# 변수/프로퍼티
+
+
+# 함수/메서드
