@@ -1,0 +1,48 @@
+# Animation
+- 미리 만들어둔 Animation Clip을 재생하는 컴포넌트
+
+# 기본 프로퍼티
+- Animation : 현재 실행중인 Animation Clip
+- Animations : 실행 준비중인 Animation Clip
+-- Play Automatically : 시작하자마자 Animation을 Play하겠다.
+-- Animate Phsics : 애니메이션에 물리효가를 넣겠다.
+-- Update Mode : Normal, Fixed 의 모드 선택
+-- Culling Type : 카메라에 보이지 않을떄 Animation을 재생할지 말지 결정
+
+# 변수/프로퍼티
+- Clip : 기본으로 재생할 AnimationClip을 설정합니다.
+- playAutomatically : GameObject가 활성화될 때 자동으로 애니메이션을 재생할지 여부 (true, false)
+- wrapMode : 애니메이션이 끝났을 때의 행동 설정(반복할지, 멈출지)
+-- Once : 애니메이션을 한 번만 재생하고 끝
+-- Loop : 계속 반복 재생
+-- PingPong : 앞 -> 뒤 -> 앞 -> 뒤 계쏙 왕복 재생
+-- ClampForever : 끝난 뒤 마지막 프레임에서 멈춤
+- isPlaying : 현재 이 Animation 컴포넌트가 애니메이션을 재생 중인지 확인 (true, false)
+- animatePhysic : 애니메이션 업데이트를 FixedUpdate() 타아밍으로 할지 선택
+- cullingType : 애니메이션이 꺼져 있는 동안 처리방식
+- localBounds : 애니메이션 재생중 계산되는 Bounding Box 설정
+
+# 함수/메서드
+- Play() : 현재 설정된 기본 클립을 재생하거나, 이름을 지정해 특정 클립 재생
+- CrossFade() : 현재 재생 중인 애니메이션에서 지정된 애니메이션으로 부드럽게 전환
+- Stop() : 현재 재생 중인 애니메이션을 모두 중지
+- IsPlaying() : 특정 클립이 재생 중인지 확인
+- Rewind() : 특정 클립을 처음 프레임으로 돌리고 정지
+- Sample() : 현재 시간에 맞춰 애니메이션을 강제로 갱신
+- Blend() : 여러 클립을 지정한 가중치로 동신에 블렌딩
+- GetClipCount() : 등록된 AnimationClip 수 가져오기
+- AddClip() : AnimationClip을 런타임 중 Animation에 추가
+- RemoveClip() : Animation에서 특정 클립 제거
+
+# AnimationState 
+- Animation 컴포넌트를 한 클립을 직접 다루는 핸들
+- 각 클립별 속성 제어가 가능합니다.
+
+# 프로퍼티
+- name : 연결된 animation Clip 이름
+- enabled : 현재 Animation Clip이 현재 활성화돼 있는지
+- weight : 블렌딩할 떄 이 클립이 차지하는 가중치
+- time : 현재 재생되고 있는 시간
+- normalizedTime : 0~1 범위로 나타낸 시간
+- speed : 이클립의 재생 속도 (1 = 기본, 2 = 2배속)
+- length : 클립 전체 길이

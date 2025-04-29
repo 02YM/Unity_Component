@@ -4,6 +4,10 @@
 # 주의 사항
 - "MainCamera" 태그가 붙은 현재 활성화 되어 있는 카메라
 
+# 팁
+- FPS나 3D 게임이면 fieldOfView 조정,
+- 2D 게임이면 orthographicSize 조정,
+- 마우스 클릭/터치 대응하려면 ScreenToWorldPoint를 정말 많이 써.
 
 # 기본 프로퍼티
 - 1. ClearFlags : 카메라 영여의 빈 부분을 어떻게 처리할지.

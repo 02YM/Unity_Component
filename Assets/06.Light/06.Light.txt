@@ -47,6 +47,46 @@
 
 
 # 변수/프로퍼티
+## 기본적으로 많이 보는 프로퍼티
+- Type : Light의 종류 설정
+- Color : 빛의 색깔
+- Intensity : 빛의 강도
+- Range : 빛이 퍼지는 거리
+- SpotAngle : 스포트라이트의 퍼지는 각도
+
+## 그림자 관련 프로퍼티
+- shadows : 그림자 사용 여부 및 타입
+- Shadw Strength : 그림자 투명도 조절
+- Shadow Bias : 그림자 깨짐이나 셰도우 이티팩트를 조정할 떄 사용.
+
+## 고급 설정
+- Cookie : 빛에 텍스처를 적용해서 특정한 패턴을 만들 수 있음
+- Cookie Size : 쿠키 텍스처의 크기 조절
+- Render Mode : 빛의 렌더링 우선 순위
+- Culling Mask : 어떤 레이어에만 이 Light를 적용할지 설정.
 
 
 # 함수/메서드
+- 메서드는 보통 커스텀 렌더링(SRP) 작업할 때 많이 사용하고,
+- 일반 게임 로직에서는 거의 enabled, Reset() 정도로만 다루는 경우가 많습니다.
+
+## 일반 게임 로직
+- enabled()
+-- 활성화, 비활성화
+- reset()
+-- Light 설정을 기본값으로 초기화
+
+## SRP(Scriptable Render Pipeline)
+- Unity의 렌더링 과정을 개발자가 직접 제어하고 커스터마이즈할 수 있도록 만든 시스템입니다.
+- 내가 직접 렌더링 과정을 만들고, 사용하는것
+
+-SRP 구조
+- 기본 Built-in 렌더링 흐름
+-- 카메라 -> Unity 내부 자동 렌더링 -> 화면 출력 
+(개발자가 수정 불가)
+
+-- 카메라 -> 사용자가 만든 c# 스크립트(RendererFeature, RenderPass) -> 커스텀 렌더링 -> 화면출력
+(개발자가 직접 제어 가능)
+
+-종류
+-- URP, HDRP, Custom SRP
