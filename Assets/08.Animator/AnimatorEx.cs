@@ -13,6 +13,6 @@ public class AnimatorEx : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.StateMachine
+        
     }
 }
