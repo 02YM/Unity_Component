@@ -1,0 +1,88 @@
+# Particle System
+- 파티클 효과를 생성하고 제어하는 도구입니다.
+
+# Inspector
+## Particle System 
+- Duration : 시스템 전체 재생 시간
+- Looping : 효과 무한 반복 여부
+- Prewarm : 시작 시 시스템이 이미 실행중인 것처럼 보이게함(루프 필요)
+- Start Delay : 재생 전 대기 시간
+- Start LifeTime : 개별 파티클의 수명
+- Start Speed : 파티클 초기 이동 속도
+- Start Size : 파티클 초기 크기
+- Start Rotation : 파티클 초기 회전 각도
+- Start Color : 파티클 초기 색상
+- Gravity Modifier : 중력 영향(0=무중력, 양수=중력)
+- Simulation Space(Local) : 파티클 기준 좌표계(Local = 부모 기준, World = 월드 기준)
+- Max Particle : 동시 존재 가능한 최대 파티클 수
+
+## Emission(발산 설정)
+- Rate over Time : 초당 생성되는 파티클 수
+- Bursts : 특정 시간에 한번에 방출할 파티클 수(예) 폭발 효과)
+
+## Shape(발산 형태)
+- Shape Type : 파티클이 발산되는 형태(Sphere, Cone, Box, 등)
+- Angle/Radius/Size : 선택한 형태에 따른 세부 크기 조정
+
+## 주요 모듈 활성화 목록
+- Velocity over Lifetime : 시간에 따른 속도 변화
+- Color over Lifetime : 파티클 수명에 따른 색상 변화
+- Size over Lifetime : 파티클 크기 변화
+- Noise : 파티클 이동경로에 노이즈 추가(불규칙한 움직임)
+- Collision : 파티클이 오브젝트와 충돌하도록 설정
+- Trails : 파티클 뒤에 꼬리 효과 추가
+- Renderer : 파티클의 시각적 렌더링 설정(Material, Sorting Layer)
+
+## Renderer Module(렌더링)
+- 파니클의 외관(모양, 색상, 그림자 등)을 정의합니다.
+- Renderer Mode : 렌더링 방식
+	모드						설명								사용 예시
+-- Billboard 				파티클이 항상 카메라를 향함		구름, 연기
+-- Stretched Billboard		속도 방향으로 파티클이 늘어남		추진기 불꽃
+-- Horizontal Billboard		지면과 평행하게 고정				비, 눈
+-- Vertical Billboard		지면과 수직으로 고정				폭포
+-- Mesh						3D 모델로 파티클 표시				파편, 잎사귀
+
+- Normal Direction : 파티클의 법선 방향 조정(광원 반응에 영향)
+
+- Material : 파티클에 적용할 머티리얼
+-- Shader 종류에 따라 효과 변화
+-- Standard : 기본적인 빛 반응
+-- Particles/Additive : 빛 효과 강조(불꽃, 마법)
+-- Particles/Alpha Blended : 반투명 효과(연기)
+
+- Sort Mode : 파티클에 적용할 머티리얼
+-- By Distance : 카메라와 가까운 순
+-- Oldest in Front : 오래된 파티클이 앞에
+
+- Sorting Fudge : 렌더링 우선순위 조정 (값이 작을 수록 우선순위 높습니다.)
+
+- Min/Max Particle Size : 파티클 크기 범위 제한(화면 비율 기준)
+
+- Render Alignment : 타키ㅡㄹ 정렬 축
+
+- Flip : 파티클을 X/Y/Z축으로 반전
+
+- Allow Roll : 카메라가 기울어질 떄 파티클도 함꼐 회전
+
+- Pivot : 파티클의 회전/스케일 중심점 조정
+
+- Visualize Pivot : 피벗 위치를 씬 뷰에서 시각화
+
+- Masking : 특정 영역에서 파티클 가리기
+
+- Apply Active Color Space : 선형/감마 색상 공간 적용
+
+- Custom Vertex Streams : 정점 데이터를 커스터 마이징
+
+---- 그림자 및 라이트 설정
+- Cast Shadows : 파티클이 그림자를 드리울지 여부
+- Receive Shadwos : 다른 오브젝트의 그림자를 받음
+- Shadow Bias : 그림자 오프셋 조정
+- Motion Vectors : 모션 블러 효과 지원
+- Sorting Layer : 2D 레이어 간 렌더링 순서
+- Order In Layer : 동일 레이어 내 순서 (숫자가 높을 수록 앞에 표시됩니다.)
+- Light Probes : 동적 라이트 프로브 사용
+- Reflection Probes : 반사광 프로브 사용
+
+https://docs.unity3d.com/6000.1/Documentation/ScriptReference/ParticleSystem.html

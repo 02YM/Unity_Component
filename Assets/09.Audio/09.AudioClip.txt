@@ -1,0 +1,20 @@
+# AudioClip
+- 유니티에서 소리를 저장하고 재생하기 위한 데이터 객체입니다.
+
+# 주요 특징
+- Clip : 실제 소리를 담고 있는 오디오 데이터
+- Length : 클립의 길이
+- Samples : 전체 샘플 수
+- Channels : 스테레오면2, 모노면 1
+- Frequency : 샘플링 레이트
+- LoadType : 사운드를 어떻게 로딩할지 설정
+- Compression : 메모리 용량 최적화를 위한 압축 방식 설정 가능
+
+# 메서드
+- Play : 오디오 재생
+- Stop : 오디어 정지
+- PlayOnShot : 효과음 재생에 많이 쓰임. 겹처 재생 가능
+- Loop : 루프 설정
+- pitch : 음 높낮이 변경
+- volume : 볼륨 조절
+- time, timeSamples : 재생 위치 지정 가능

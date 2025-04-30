@@ -52,11 +52,15 @@
 ## 애니메이션 상태 제어 관련
 - Play(string stateName, int layer, float normalizedTime)
 -- 특정 상태를 직접 재생시킵니다. 애니메이터 트랜지션 무시하고 강제 재생할 때 유용합니다.
+-- int layer : Animator의 레이어 인덱스를 의미합니다.
+-- 0 : Base Layer
+-- 1, 2, ... : 추가한 Sub Layer
 
 - CrossFade(string stateName, float trasitionDuration, int layer, float normalizedTime)
 -- 지정된 상태로 부드럽게 전이합니다. 자연스러운 블렌딩에 적합
 
 ## 파라미터 설정 및 조작
+-- Reset은 Trigger만 허용됩니다.!
 - SetBool(string name, bool value)
 
 - SetTrigger(string name)
@@ -68,21 +72,29 @@
 - SetFloat(string name, float value)
 
 - SetInteger(string name, int value)
+## 파라미터 핵심 차이
+타입		설명				값예시			주용도						특징
+float	연속적인수치		0.0, 1.5		속도, 방향,블렌드 트리		부드런운 전이/블렌딩가능
+int		정수값			0,1,2			애니메이션 종류 구분			조건 분기
+bool	상태유지			true/false		행동유지						상태를 수동으로 끄고 켜야함
+Trigger	순간적인 이벤트	-				점프,공격,피격				한번 발동 후 자동 초기화됨
 
 ### 현재 파라미터 값을 가져올 수 있습니다.
 -GetBool
 -GetFloat
 -GetInterger
--GetTrigger
+-GetTrigger!!!
+--GetTrigger라는 메서드는 없습니다.
+--그러므로 GetCurrentAnimatorStateInfo().IsName을 사용해야합니다.
 
-## 현재 상태 정보 확인
+## 상태 정보 확인
 - GetCurrentAnimatorStateInfo(int layerIndex)
 -- 현재 애니메이터의 상태 정보를 가져올 수 있습니다.
 -- 예) 현재 어떤 상태 이름인지, 클립 길이, 노멀라이즈 타입 등 확인가능
 AnimatorSateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0)
 if(stateInfo.IsName("Run")){ /* 달리는 중 */}
 
-- GetNextAnimatorStateInfo(int layer)
+- GetNextAnimatorStateInfo(int layerIndex)
 -- 다음 전이될 상태의 정보를 미리 확인할 수 있습니다.
 
 - GetAnimatorTransitionInfo(int layerIndex)
