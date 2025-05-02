@@ -86,3 +86,16 @@
 - Reflection Probes : 반사광 프로브 사용
 
 https://docs.unity3d.com/6000.1/Documentation/ScriptReference/ParticleSystem.html
+
+# 함수/메서드
+- Play() : 파티클 시스템 실행
+- Stop() : 파티클 시스템 정지
+- Pause() : 파티클 일시 정지
+- Clear() : 모든 파티클 초기화, Stop()과 함께 사용합니다.
+-- particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); 이런식으로 많이 쓰입니다.
+- Emit(int count) : 원하는 개수만큼 파티클 즉시 생성
+- IsAlive() : 파티클이 살아 있는지 여부 반환
+- Simulate(float time, bool withChildren, bool restart, bool fixedTimeStep) : 수동 시뮬레이션 실행. 특정 시간만큼 진행된 상태로 만들때 유용.
+-- time : 진행할 시간입니다.
+-- withChildren : 모든 자식 파티클 시스템도 빠르게 전달
+-- restart : 재시작
