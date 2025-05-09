@@ -1,0 +1,31 @@
+# Phycisc 물리 충돌 함수
+## Static Properties
+- gravity : 신 전체에 적용되는 중력값, 전역 중력을 조정할 때 사용됩니다.
+- defaultContactOffset : Collider 간의 기본 간격 설정, 물리 오차로 인한 떨림 현상을 줄이기 위해 조정할 수 있습니다.
+- defaultSolverIterations/
+defaultSolverVelocityIterations : Rigdbody나 Collsiion 해결 정확도 조정, 부드러운 물리 반응을 위해 높이기도 합니다.
+-- SolverIterations : 위치/회전 등 큰 움직임 해결 반복횟수
+-- SolverVelocityIterations : 속도 기반 문제 해결 반복 회수
+-- Joint가 많이 흔들릴때, 고속 Rigidbody가 겹칠거나 뚫을때, 회적화가 중요할 때
+
+- queriesHitTriggers : Raycast나 Overlap에서 Trigger도 감지 할 것인지 여부, 트리거 오브젝트에 상호작용할 때 필수
+- queriesHitBackfaces : 됫면(Backface)도 Raycast에 감지되게 할지 여부, 투명한 면 등을 체크할 때 유용
+- autoSyncTransforms : Transform 변경이 물리엔진에 자동 반영되게 할지, 빈번한 위치이동이 있는경우 false, 또는 수동 호출하기도함
+-- autoSyncTransforms = false : Transform 변화가 자동으로 물리 반영되지 않음
+-- Physics.SyncTransforms() : 수동으로 물리와 Transform을 강제로 동기화 함
+- SleepThreshold : Rigidbody가 수면상태로 전환되기 위한 임계치, 퍼포먼스 최적화나 특정 동작을 방지할 때 조정
+
+## Methods
+- RaycastHit		Raycast : 가장 기본적인 충돌감지 방식, 직선을 쏴서 맞은 오브젝트 확인
+- RaycastHit[]		RaycastAll : Ray에 맞은 모든 오브젝트를 반환, 관통현 무기, 레이저 등에서 사용
+- Collider[]		OverlapSphere : 지정한 위치와 반지름 내의 모든 Collider를 탐지, 범위 감지, 시야 등
+- bool				CheckSphere : 해당 위치에 Collider가 하나라도 있는지 bool로 반환, 빠른 충돌 체크
+- bool				BoxCast : 박스 형태로 Sweep테스트, 벽 충돌 예측 등에 사용
+-		CapsuleCast : 캡슐 형태 Sweep 테스트, 캐릭터 충돌 예측 등에 사용
+-		OverlapBox : 박스 모양의 영역 내 충돌체 감지, 박스 안에 있는 적 탐색
+-		IgnoreCollsion : 특정 Collider간 충돌 무시, 임시 무적, 투과 효과 구현시 사용
+-		GetIgnoreCollsion : 두 Collider 간 충돌 무시 여부 확인
+-		Linecast : A지점에서 B지점 사이에 충돌이있는지 확인, 벽이나 시야 체크
+-		SyncTramsforms : false 상태에서 Trasform을 물리 엔진에 강제 반영
+- " " All : 충돌체 목록을 가져 옵니다.
+- " " NonAlloc : 충돌체 개수를 가져옵니다
