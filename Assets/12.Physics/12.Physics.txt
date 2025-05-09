@@ -21,10 +21,10 @@ defaultSolverVelocityIterations : Rigdbody나 Collsiion 해결 정확도 조정, 부드러�
 - Collider[]		OverlapSphere : 지정한 위치와 반지름 내의 모든 Collider를 탐지, 범위 감지, 시야 등
 - bool				CheckSphere : 해당 위치에 Collider가 하나라도 있는지 bool로 반환, 빠른 충돌 체크
 - bool				BoxCast : 박스 형태로 Sweep테스트, 벽 충돌 예측 등에 사용
--		CapsuleCast : 캡슐 형태 Sweep 테스트, 캐릭터 충돌 예측 등에 사용
--		OverlapBox : 박스 모양의 영역 내 충돌체 감지, 박스 안에 있는 적 탐색
--		IgnoreCollsion : 특정 Collider간 충돌 무시, 임시 무적, 투과 효과 구현시 사용
--		GetIgnoreCollsion : 두 Collider 간 충돌 무시 여부 확인
+- bool				CapsuleCast : 캡슐 형태 Sweep 테스트, 캐릭터 충돌 예측 등에 사용
+- Collider[]		OverlapBox : 박스 모양의 영역 내 충돌체 감지, 박스 안에 있는 적 탐색
+- bool				IgnoreCollsion : 충돌을 무시할지 여부를 설정하는 메서드
+- bool				GetIgnoreCollsion : 충돌을 무시하고 있는지 확인하는 메서드
 -		Linecast : A지점에서 B지점 사이에 충돌이있는지 확인, 벽이나 시야 체크
 -		SyncTramsforms : false 상태에서 Trasform을 물리 엔진에 강제 반영
 - " " All : 충돌체 목록을 가져 옵니다.
